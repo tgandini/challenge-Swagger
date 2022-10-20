@@ -1,0 +1,20 @@
+openapi: 3.0.0
+paths:
+  /v1/products:
+    get:
+      tags:
+        - Productos
+      summary: 'Get all Productos'
+      description: 'Muestra todos los productos guardados'
+      operationId: a3a2d1d190c891312f074e45434c61ec
+      responses:
+        '200': {  }
+  /:
+    get:
+      tags:
+        - 'Testeo de la API'
+      summary: HolaMundo
+      description: 'Endpoint de prueba para ver si la API está corriendo'
+      operationId: 8f042dc0c574ec53000d68b979a707c7
+      responses:
+        '200': {  }

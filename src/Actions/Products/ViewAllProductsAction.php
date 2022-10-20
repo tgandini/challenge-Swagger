@@ -33,6 +33,18 @@ final class ViewAllProductsAction extends Action
      * 
      * @return \Psr\Http\Message\ResponseInterface
      */
+
+    /**
+     * @OA\Get(
+     *     path="/v1/products",
+     *     @OA\Response(
+     *         response="200",
+     *     ),
+     *     tags={"Productos"},
+     *     summary="Get all Productos",
+     *     description="Muestra todos los productos guardados",
+     * ) 
+     */
     public function __invoke(Request $request, Response $response): Response
     {
         $products = $this->productRepository->fetchAll();

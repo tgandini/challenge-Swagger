@@ -1,0 +1,5 @@
+Levantar el servidor PHP: 
+php -S localhost:9000
+
+Generar el openapi.yaml:
+php vendor\zircote\swagger-php\bin\openapi src -o openapi.yaml

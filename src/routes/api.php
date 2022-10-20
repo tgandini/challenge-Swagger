@@ -2,8 +2,22 @@
 
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
+use Slim\Views\PhpRenderer;
 
 return function (App $app) {
+
+    $app->get('/docs', function ($request, $response) {
+        $rutaTemplates=__DIR__.'\..\Templates';
+        $renderer = new PhpRenderer($rutaTemplates);
+        return $renderer->render($response, "swagger.html");
+    });
+
+    //get openapi.yaml
+    $app->get('/openapi', function ($request, $response) {
+        $yaml =file_get_contents (__DIR__ . '\..\..\openapi.yaml', 'rb');
+        $response->getBody()->write($yaml);
+        return $response;
+    });    
 
     $app->get(
         '/',

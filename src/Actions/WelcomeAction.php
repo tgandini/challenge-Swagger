@@ -14,11 +14,48 @@ use OpenApi\Attributes as OA;
  *     version="0.1"
  * )
  */
-//openapi tags
 
- 
+
 class OpenApi {}
+    /**
+     * @OpenAPIdefinition(
+     *     tags={
+     *         @OA\Tag(name="Testing", description="Endpoint de prueba para ver si la API está corriendo", order=1),
+     *         @OA\Tag(name="Operaciones de Lectura", description="Todo lo referido al retrieve de productos según diferentes criterios" , order=2),
+     *         @OA\Tag(name="Operaciones de Escritura", description="Todo lo referido a la inserción, modificación y eliminación de productos", order=3),
+     */
 
+    /**
+     * @OA\Schema(
+     *     schema="Product",
+     *     type="object",
+     *     title="Product",
+     *     @OA\Property(property="id", type="integer"),
+     *     @OA\Property(property="name", type="string"),
+     *     @OA\Property(property="slug", type="string"),
+     *     @OA\Property(property="description", type="string"),
+     *     @OA\Property(property="price", type="number"),
+     *     @OA\Property(property="stock", type="number"),
+     *     @OA\Property(property="keywords", type="string"),
+     * )
+     * @OA\Schema(
+     *      schema="Exception",
+     *      type="object",
+     *      title="Exception",
+     *      @OA\Property(property="type", type="string"),
+     *      @OA\Property(property="code", type="integer"),
+     *      @OA\Property(property="message", type="string"),
+     *      @OA\Property(property="file", type="string"),
+     *      @OA\Property(property="line", type="integer"),
+     * )
+     * @OA\Schema(
+     *     schema="Internal Server error Alta",
+     *     type="object",
+     *     title="Internal Server error al crear un producto",
+     *    @OA\Property(property="message", type="string"),
+     *    @OA\Property(property="exception", type="object", ref="#/components/schemas/Exception"),
+     * )
+     */
 
 final class WelcomeAction extends Action
 {
@@ -42,9 +79,8 @@ final class WelcomeAction extends Action
      *     @OA\Response(
      *         response="200",
      *     ),
-     *     tags={"Testeo de la API"},
-     *     summary="HolaMundo",
-     *     description="Endpoint de prueba para ver si la API está corriendo",
+     *     tags={"Testing"},
+     *     summary="HolaMundo de prueba",
      * ) 
      */
     public function __invoke(Request $request, Response $response, $args = []): Response

@@ -36,13 +36,19 @@ final class ViewAllProductsAction extends Action
 
     /**
      * @OA\Get(
-     *     path="/v1/products",
-     *     @OA\Response(
-     *         response="200",
-     *     ),
-     *     tags={"Productos"},
+     *     path="/v1/products",    
+     *     tags={"Operaciones de Lectura"},
      *     summary="Get all Productos",
-     *     description="Muestra todos los productos guardados",
+     *     responses={
+     *        @OA\Response(
+     *            response=200,
+     *            description="Success al fetch de todos los productos",
+     *           @OA\JsonContent(
+     *             type="array",
+     *            @OA\Items(ref="#/components/schemas/Product")
+     *           )             
+     *        ), 
+     *      }
      * ) 
      */
     public function __invoke(Request $request, Response $response): Response

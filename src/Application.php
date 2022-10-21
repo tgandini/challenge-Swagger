@@ -20,15 +20,26 @@ class Application
 /**
  * @OA\Info(
  *     title="Challenge Swagger",
- *     description="Challenge Swagger propuesto por Avalith, facilitado por Chris y resuelto por Tomás Gandini")
- 
-
+ *     description="Challenge Swagger propuesto por Avalith, facilitado por Chris y resuelto por Tomás Gandini",
+ *    @OA\Contact(
+ *          email="tomas.gandini@avalith.net",
+ *          name="Tomás Gandini",
+ *         url="https://github.com/tgandini/"
+ *    ),  
+ * )
+ *
  * @OA\Server(
+ *     url="http://localhost:8000",
+ *     description="Local Server"
+ * ),
+  * @OA\Server(
  *     url="http://localhost:8080",
  *     description="Local Server"
- * )
- * 
- * 
+ * ), * @OA\Server(
+ *     url="http://localhost:9000",
+ *     description="Local Server"
+ * ),
+
 *   @OpenAPIdefinition(
 *     tags={
 *         @OA\Tag(name="Testing", description="Endpoint de prueba para ver si la API está corriendo", order=1),

@@ -2,9 +2,19 @@ openapi: 3.0.0
 info:
   title: 'Challenge Swagger'
   description: 'Challenge Swagger propuesto por Avalith, facilitado por Chris y resuelto por Tomás Gandini'
+  contact:
+    name: 'Tomás Gandini'
+    url: 'https://github.com/tgandini//'
+    email: tomas.gandini@avalith.net
 servers:
   -
+    url: 'http://localhost:8000'
+    description: 'Local Server'
+  -
     url: 'http://localhost:8080'
+    description: 'Local Server'
+  -
+    url: 'http://localhost:9000'
     description: 'Local Server'
 paths:
   /v1/createProduct:

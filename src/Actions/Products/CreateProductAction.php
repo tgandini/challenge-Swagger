@@ -95,6 +95,6 @@ class CreateProductAction extends Action
         $response->getBody()->write("Product created succesfully");
 
         return $response
-            ->withHeader('Content-Type', 'application/json');
+            ->withHeader('Content-Type', 'text/plain');
     }
 }

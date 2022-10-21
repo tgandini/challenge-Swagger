@@ -24,6 +24,43 @@ class UpdateProductAction extends Action
             ->getRepository(Product::class);
     }
 
+    /**
+     * @OA\Put(
+     *    path="/v1/updateProduct/{id}",
+     *    tags={"Operaciones de Escritura"},
+     *    summary="Actualizar un Producto",
+     *   @OA\Parameter(
+     *       name="id",
+     *       in="path",
+     *       description="id del Producto",
+     *       required=true,
+     *       @OA\Schema(
+     *          type="integer",
+     *       )
+     *   ),
+     *  @OA\RequestBody(
+     *        required=true,
+     *       @OA\MediaType(
+     *          mediaType="application/json",
+     *         @OA\Schema(
+     *            ref="#/components/schemas/ProductRequest"
+     *         )
+     *       )
+     *  ), 
+     *      @OA\Response(
+     *        response=200,
+     *        description="Producto Actualizado exitosamente",
+     *        @OA\JsonContent(
+     *        type="text/plain",
+     *         example="Product update succesfully")
+     *   ),
+     *    @OA\Response(
+     *        response="500",
+     *        description="Error al borrar el producto",
+     *      @OA\JsonContent(ref="#/components/schemas/Internal Server error"),
+     *   ), 
+     * )
+     */
     public function __invoke(Request $request, Response $response, $id): Response
     {
         $data = $request->getParsedBody();
@@ -33,6 +70,6 @@ class UpdateProductAction extends Action
         $response->getBody()->write("Product update succesfully");
 
         return $response
-            ->withHeader('Content-Type', 'application/json');
+            ->withHeader('Content-Type', 'text/plain');
     }
 }

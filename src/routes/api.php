@@ -12,7 +12,7 @@ return function (App $app) {
         return $renderer->render($response, "swagger.html");
     });
 
-    //get openapi.yaml
+    //endpoint para get openapi.yaml y popular la vista
     $app->get('/openapi', function ($request, $response) {
         $yaml =file_get_contents (__DIR__ . '\..\..\openapi.yaml', 'rb');
         $response->getBody()->write($yaml);

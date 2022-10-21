@@ -27,14 +27,25 @@ class OpenApi {}
 
     /**
      * @OA\Schema(
-     *     schema="Product",
+     *     schema="ProductRequest",
      *     type="object",
-     *     title="Product",
+     *     title="ProductRequest",
+     *     @OA\Property(property="name", type="string", required={"true"}),
+     *     @OA\Property(property="slug", type="string"),
+     *     @OA\Property(property="description", type="string"),
+     *     @OA\Property(property="price", type="number"),
+     *     @OA\Property(property="stock", type="integer"),
+     *     @OA\Property(property="keywords", type="string"),
+     * )
+     * @OA\Schema(
+     *     schema="ProductResponse",
+     *     type="object",
+     *     title="ProductResponse",
      *     @OA\Property(property="id", type="integer"),
      *     @OA\Property(property="name", type="string"),
      *     @OA\Property(property="slug", type="string"),
      *     @OA\Property(property="description", type="string"),
-     *     @OA\Property(property="price", type="number"),
+     *     @OA\Property(property="price", type="integer"),
      *     @OA\Property(property="stock", type="number"),
      *     @OA\Property(property="keywords", type="string"),
      * )

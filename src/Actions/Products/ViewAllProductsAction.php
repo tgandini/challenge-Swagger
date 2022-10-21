@@ -45,7 +45,7 @@ final class ViewAllProductsAction extends Action
      *            description="Success al fetch de todos los productos",
      *           @OA\JsonContent(
      *             type="array",
-     *            @OA\Items(ref="#/components/schemas/Product")
+     *            @OA\Items(ref="#/components/schemas/ProductResponse")
      *           )             
      *        ), 
      *      }

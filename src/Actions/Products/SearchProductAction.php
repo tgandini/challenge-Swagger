@@ -63,7 +63,7 @@ class SearchProductAction extends Action
      *   @OA\Response(
      *        response=200,
      *        description="Producto encontrado",
-     *        @OA\JsonContent(ref="#/components/schemas/Product"),
+     *        @OA\JsonContent(ref="#/components/schemas/ProductResponse"),
      *   ),
      *    @OA\Response(
      *        response="404",

@@ -37,7 +37,7 @@ class GetProductBySlugAction extends Action
      *   @OA\Response(
      *      response="200",
      *     description="Búsqueda exitosa",
-     *    @OA\JsonContent(ref="#/components/schemas/Product"),
+     *    @OA\JsonContent(ref="#/components/schemas/ProductResponse"),
      *   ),
      * @OA\Response(
      *    response="500",

@@ -1,20 +1,317 @@
 openapi: 3.0.0
+info:
+  title: 'Challenge Swagger'
+  description: 'Challenge Swagger propuesto por Avalith, facilitado por Chris y resuelto por Tomás Gandini'
+servers:
+  -
+    url: 'http://localhost:8080'
+    description: 'Local Server'
 paths:
+  /v1/createProduct:
+    post:
+      tags:
+        - 'Operaciones de Escritura'
+      summary: 'Dar de alta un Producto'
+      operationId: 8b5ee46e22961bc812d9b8951bd93008
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - name
+                - slug
+                - description
+                - price
+                - stock
+                - keywords
+              properties:
+                name:
+                  description: 'Nombre del producto'
+                  type: string
+                slug:
+                  description: 'Slug del producto'
+                  type: string
+                description:
+                  description: 'Descripción del producto'
+                  type: string
+                price:
+                  description: 'Precio del producto'
+                  type: number
+                stock:
+                  description: 'Stock del producto'
+                  type: number
+                keywords:
+                  description: 'Palabras clave (Keywords) del producto'
+                  type: string
+              type: object
+      responses:
+        '200':
+          description: 'Success al crear un producto'
+          content:
+            application/json:
+              schema:
+                type: text/plain
+              example: 'Product created succesfully'
+        '500':
+          description: 'Internal Server error al crear un producto'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Internal Server error'
+  '/v1/deleteProduct/{id}':
+    delete:
+      tags:
+        - 'Operaciones de Escritura'
+      summary: 'Borrar un Producto'
+      operationId: e16af44395da5f537a4db6d342563df1
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'id del Producto'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Producto borrado exitosamente'
+          content:
+            application/json:
+              schema:
+                type: text/plain
+              example: 'Product deleted succesfully'
+        '500':
+          description: 'Error al borrar el producto'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Internal Server error'
+  '/v1/products/{id}':
+    get:
+      tags:
+        - 'Operaciones de Lectura'
+      summary: 'Get producto by id'
+      operationId: a8bc3b1f5e0a7ee63f7c61d5900a3727
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'id del Producto'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Búsqueda exitosa'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+        '500':
+          description: 'Error al buscar el producto'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Internal Server error'
+  '/v1/products/{slug}':
+    get:
+      tags:
+        - 'Operaciones de Lectura'
+      summary: 'Get producto by slug'
+      operationId: 0f8b1d83c418b26a39d86e9fc5fef51b
+      parameters:
+        -
+          name: slug
+          in: path
+          description: 'slug del Producto'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Búsqueda exitosa'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+        '500':
+          description: 'Error al buscar el producto'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Internal Server error'
+  /v1/products/search:
+    post:
+      tags:
+        - 'Operaciones de Lectura'
+      summary: 'Get Producto by custom Parameter'
+      operationId: 04b69e64aa62909939a7286bf462264b
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                name:
+                  description: 'Buscar por Nombre'
+                  type: string
+                slug:
+                  description: 'Buscar por Slug'
+                  type: string
+                description:
+                  description: 'Buscar por Descripción'
+                  type: string
+                price:
+                  description: 'Buscar por Precio'
+                  type: number
+                stock:
+                  description: 'Buscar por Stock'
+                  type: number
+                keywords:
+                  description: 'Buscar por Palabras Clave'
+                  type: string
+              type: object
+      responses:
+        '200':
+          description: 'Producto encontrado'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+        '404':
+          description: 'Producto no encontrado'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Internal Server error'
+  '/v1/updateProduct/{id}':
+    put:
+      tags:
+        - 'Operaciones de Escritura'
+      summary: 'Actualizar un Producto'
+      operationId: c1c71d5d804e4d33347317a360237574
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'id del Producto'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductRequest'
+      responses:
+        '200':
+          description: 'Producto Actualizado exitosamente'
+          content:
+            application/json:
+              schema:
+                type: text/plain
+              example: 'Product update succesfully'
+        '500':
+          description: 'Error al borrar el producto'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Internal Server error'
   /v1/products:
     get:
       tags:
-        - Productos
+        - 'Operaciones de Lectura'
       summary: 'Get all Productos'
-      description: 'Muestra todos los productos guardados'
       operationId: a3a2d1d190c891312f074e45434c61ec
       responses:
-        '200': {  }
+        '200':
+          description: 'Success al fetch de todos los productos'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductResponse'
   /:
     get:
       tags:
-        - 'Testeo de la API'
-      summary: HolaMundo
-      description: 'Endpoint de prueba para ver si la API está corriendo'
+        - Testing
+      summary: 'HolaMundo de prueba'
       operationId: 8f042dc0c574ec53000d68b979a707c7
       responses:
         '200': {  }
+components:
+  schemas:
+    ProductRequest:
+      title: ProductRequest
+      properties:
+        name:
+          required:
+            - 'true'
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        stock:
+          type: integer
+        keywords:
+          type: string
+      type: object
+    ProductResponse:
+      title: ProductResponse
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        price:
+          type: integer
+        stock:
+          type: number
+        keywords:
+          type: string
+      type: object
+    Exception:
+      title: Exception
+      properties:
+        type:
+          type: string
+        code:
+          type: integer
+        message:
+          type: string
+        file:
+          type: string
+        line:
+          type: integer
+      type: object
+    'Internal Server error':
+      title: 'Internal Server error al hacer requests fallidos'
+      properties:
+        message:
+          type: string
+        exception:
+          $ref: '#/components/schemas/Exception'
+      type: object
+tags:
+  -
+    name: Testing
+    description: 'Endpoint de prueba para ver si la API está corriendo'
+    order: 1
+  -
+    name: 'Operaciones de Lectura'
+    description: 'Endpoints referidos al retrieve de productos según diferentes criterios'
+    order: 2
+  -
+    name: 'Operaciones de Escritura'
+    description: 'Endpoints referidos a la inserción, modificación y eliminación de productos'
+    order: 3

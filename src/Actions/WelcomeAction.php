@@ -49,9 +49,9 @@ class OpenApi {}
      *      @OA\Property(property="line", type="integer"),
      * )
      * @OA\Schema(
-     *     schema="Internal Server error Alta",
+     *     schema="Internal Server error",
      *     type="object",
-     *     title="Internal Server error al crear un producto",
+     *     title="Internal Server error al hacer requests fallidos",
      *    @OA\Property(property="message", type="string"),
      *    @OA\Property(property="exception", type="object", ref="#/components/schemas/Exception"),
      * )

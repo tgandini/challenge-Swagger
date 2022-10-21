@@ -81,7 +81,7 @@ class CreateProductAction extends Action
      *    description="Internal Server error al crear un producto",
      *  @OA\JsonContent(
      *    type="array",
-     *   ref="#/components/schemas/Internal Server error Alta"
+     *   ref="#/components/schemas/Internal Server error"
      *   )
      * )
      * )

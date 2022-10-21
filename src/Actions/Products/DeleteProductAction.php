@@ -24,6 +24,35 @@ class DeleteProductAction extends Action
             ->getRepository(Product::class);
     }
 
+    /**
+     * @OA\Delete(
+     *     path="/v1/deleteProduct/{id}",
+     *     tags={"Operaciones de Escritura"},
+     *     summary="Borrar un Producto",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="id del Producto",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *         )
+     *     ),
+     *    @OA\Response(
+     *        response=200,
+     *        description="Producto borrado exitosamente",
+     *        @OA\JsonContent(
+     *        type="text/plain",
+     *         example="Product deleted succesfully"
+     *         )
+     *   ),
+     *    @OA\Response(
+     *        response="500",
+     *        description="Error al borrar el producto",
+     *      @OA\JsonContent(ref="#/components/schemas/Internal Server error"),
+     *   ), 
+     * ) 
+     */
     public function __invoke(Request $request, Response $response, $id): Response
     {
         /**

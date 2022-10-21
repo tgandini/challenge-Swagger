@@ -49,8 +49,7 @@ final class WelcomeAction extends Action
      */
     public function __invoke(Request $request, Response $response, $args = []): Response
     {
-        $response->getBody()->write("Hola Mundo!!! Api de productos funcionando =)");
-
+        $response->getBody()->write("Welcome to Products API");
         return $response;
     }
 }
